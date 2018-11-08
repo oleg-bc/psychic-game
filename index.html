@@ -1,35 +1,39 @@
-You're going to make a game just like the one in the video. Essentially, the app randomly picks a letter, and the user has to guess which letter the app chose. Put the following text on your page:
+<!-- randomly picks a letter, 
+and the user has to guess which letter the app chose. 
+Put the following text on your page:
 Guess what letter I'm thinking of
 Wins: (# of times the user has guessed the letter correctly)
 Losses: (# of times the user has failed to guess the letter correctly after exhausting all guesses)
 Guesses Left: (# of guesses left. This will update)
 Your Guesses So Far: (the specific letters that the user typed. Display these until the user either wins or loses.)
 When the player wins, increase the Wins counter and start the game over again (without refreshing the page).
-When the player loses, increase the Losses counter and restart the game without a page refresh (just like when the user wins).
+When the player loses, increase the Losses counter and restart the game without a page refresh (just like when the user wins). -->
 
-<!-- 
-* Then create code that will ask the user questions, 
-one by one. The user must answer by hitting t (for true) or f (for false).
-* Check the user's answer against the correct answer, and provide them 
-with an alert telling them if they are right or wrong.
-* **BONUS:** Keep track of the user's score.
-* **HINT:** Don't worry about having DRY code to start with. 
-Just focus on getting working code first. -->
+
 <!DOCTYPE html>
 <html lang="en-us">
 
 <head>
     <meta charset="UTF-8">
-    <title>Question Game</title>
+    <title>The Psychic Game</title>
 </head>
 
 <body>
 
-    <h1>Question Game: use t and f to respond</h1>
+    <!-- <h1>Question Game: use t and f to respond</h1>
     <div class="questions" style="background-color: yellowgreen"></div>
     <div class="score" style="background-color: yellow"></div>
-    <div class="response" style="background-color:royalblue"></div>
-
+    <div class="response" style="background-color:royalblue"></div> -->
+    <h1>The Psychic Game</h1>
+    <div>Guess what letter I'm thinking of</div>
+    <!-- (# of times the user has guessed the letter correctly) -->
+    <div>Wins:</div> 
+    <!-- (# of times the user has failed to guess the letter correctly after exhausting all guesses) -->
+    <div>Losses:</div>  
+    <!-- Guesses Left: (# of guesses left. This will update) -->
+    <div>Guesses Left:</div>  
+    <!-- Your Guesses So Far: -->
+    <div>Guesses So Far:</div>  
 
     <script>
 
