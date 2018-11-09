@@ -61,6 +61,7 @@ When the player loses, increase the Losses counter and restart the game without 
                             wins++;
                             guessCounter=8;
                             document.querySelector(".wins").innerHTML = "Wins: " + wins;
+                            document.querySelector(".guesses-left").innerHTML = "Guesses left: " + guessCounter;
                             computerPick = myAlfa[genRando()];
                             console.log("computerPick is "+computerPick);
                             } else {
@@ -72,6 +73,8 @@ When the player loses, increase the Losses counter and restart the game without 
                                     console.log("computerPick is "+computerPick);
                                     document.querySelector(".losses").innerHTML = "Losses: " + losses;
                                     guessCounter=8;
+                                    document.querySelector(".guesses-left").innerHTML = "Guesses left: " + guessCounter;
+
                                     }
                                     console.log("u just guessed wrong and guessCounter is "+ guessCounter);
                             } 
