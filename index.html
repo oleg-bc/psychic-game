@@ -55,7 +55,7 @@ When the player loses, increase the Losses counter and restart the game without 
             var userPick = event.key;
             if (checkAlpha(userPick)) {
                     if (guessCounter<=8){
-                    document.querySelector(".guesses-so").insertAdjacentText("afterend", userPick);
+                    document.querySelector(".guesses-so").innerHTML += userPick;
                     console.log("checking userPick it is " + userPick);
                         if (checkGuess(computerPick, userPick)) {
                             wins++;
