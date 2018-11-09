@@ -17,115 +17,65 @@ When the player loses, increase the Losses counter and restart the game without 
 
 <body>
 
-    <!-- <h1>Question Game: use t and f to respond</h1>
-    <div class="questions" style="background-color: yellowgreen"></div>
-    <div class="score" style="background-color: yellow"></div>
-    <div class="response" style="background-color:royalblue"></div> -->
     <h1>The Psychic Game</h1>
     <div>Guess what letter I'm thinking of</div>
     <!-- (# of times the user has guessed the letter correctly) -->
-    <div class="wins" style="background-color: yellowgreen">Wins:</div> 
+    <div class="wins" style="background-color: yellowgreen">Wins:</div>
     <!-- (# of times the user has failed to guess the letter correctly after exhausting all guesses) -->
-    <div class="losses"  style="background-color: yellow"> Losses:</div>  
+    <div class="losses" style="background-color: yellow"> Losses:</div>
     <!-- Guesses Left: (# of guesses left. This will update) -->
-    <div class="guesses-left"style="background-color:royalblue" >Guesses Left:</div>  
+    <div class="guesses-left" style="background-color:royalblue">Guesses Left:</div>
     <!-- Your Guesses So Far: -->
-    <div class="guesses-so" style="background-color: peru">Guesses So Far:</div>  
+    <div class="guesses-so" style="background-color: peru">Guesses So Far:</div>
+    <div class="errors" style="background-color:orangered;"></div>
 
     <script>
-    var guessCounter=0;
-    var guessesLeft; // INITIALIZE ONCE CORRECT KEY IS PRESSED
-    var wins=0;
-    var losses=0;
+        var guessCounter = 0;
+        var guessesLeft; // INITIALIZE ONCE CORRECT KEY IS PRESSED
+        var wins = 0;
+        var losses = 0;
 
-    var myAlfa=["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"]
-    function genRando(){
-        var rando= 1+Math.floor(Math.random()*26);
-        return rando;   
-    }
-    function checkAlpha(input){
-	var tOrF;
-    for (x=0; x<myAlfa.length-1;x++){
-            if (input==myAlfa[x]){
-                    tOrF=true;
-                    console.log("was on "+myAlfa[x]+" "+"which is position index  "+x);
-                }else{tOrF=false;}
+        var myAlfa = ["q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "a", "s", "d", "f", "g", "h", "j", "k", "l", "z", "x", "c", "v", "b", "n", "m"];
+        function genRando() {
+            var rando = 1 + Math.floor(Math.random() * 26);
+            return rando;
+        }
+        function checkAlpha(input) {
+            return myAlfa.includes(input);
+        }
+        var computerPick = myAlfa[genRando()];
+        console.log("computerPick is "+computerPick);
+
+        function checkGuess(computerPick, userPick) {
+            var yayOrNay;
+            if (computerPick == userPick) {
+                yayOrNay = true;
             }
-            return tOrF;
-    }
-    var computerPick = myAlfa[rando];
+            else { yayOrNay = false; }
+            return yayOrNay;
+        }
 
-function checkGuess(computerPick,userPick){
-    var yayOrNay;
-    if (computerPick==userPick){
-        yayOrNay=true;
-    }
-    else{yayOrNay=false;}
-    return yayOrNay;
-}
-
-    document.onkeyup = function(event){
-
-        var userPick = event.key;
-        if (checkAlpha(userPick)){
-            
-           if(checkGuess(computerPick,userPick)){
-            document.querySelector(".wins").innerHTML =    
-            //to the right spot on the page - print you win
-           }else{
-              // print the other thing
-            }
-    }}
-    
-
-
-
-        var indexOfQs = quiz.length - 1;
-        //if (indexOfQs.length>-1){
-        document.querySelector(".questions").innerHTML = quiz[indexOfQs].q + " t/f ";
-        console.log(" indexOfQs is now:  "+indexOfQs);
-        var points = 0;
         document.onkeyup = function (event) {
-            if (indexOfQs>-1){
-            //var answer = document.getElementById("user-text");
-            var answer = event.key;
 
-            console.log(answer);
-            if (answer == "t" || answer == "f") {
-                console.log("user clicked  "+answer);
-                console.log("actual anser " + quiz[indexOfQs].a);
-                console.log("current number" + indexOfQs);
-
-                console.log("quiz q " + quiz[indexOfQs].q +" which is # "+ indexOfQs);
-
-                if (indexOfQs >=0) {
-                        document.querySelector(".questions").innerHTML = quiz[indexOfQs].q + " t/f ";
-                        // var answer = answer;
-                        document.querySelector(".score").innerHTML = " you got " + points + " poooooints  ";
-
-
-                        if (answer == quiz[indexOfQs].a) {
-                            console.log("i checked the answer and it is  "+"CORRECT");
-                            console.log("DOING THE 1st COMPARISON to check if correct");
-                            points++;
-                            document.querySelector(".questions").innerHTML = quiz[indexOfQs-1].q + " t/f ";
-                            document.querySelector(".response").innerHTML = "good job" + " you got " + points +" point";
-                            document.querySelector(".score").innerHTML = " you got " + points + " poooooints  ";
-
-                        } else {
-                            console.log("i checked the answer and it is  "+"WRONG");
-                            document.querySelector(".questions").innerHTML = quiz[indexOfQs-1].q + " t/f ";
-                            document.querySelector(".response").innerHTML = "wrong";
-                        }
-
-                    indexOfQs--;
-                    }
-
-
+            var userPick = event.key;
+            if (checkAlpha(userPick)) {
+                console.log("checking userPick it is " + userPick);
+                if (checkGuess(computerPick, userPick)) {
+                    wins++;
+                    document.querySelector(".wins").innerHTML = "Wins: " + wins;
+                    //to the right spot on the page - print you win
+                } else {
+                    // print the other thing
+                    losses++;
+                    document.querySelector(".losses").innerHTML = "Losses: " + losses;
+                } }
+            else {
+                    document.querySelector(".errors").innerHTML = "enter valid lower case alpha char";
                 }
             }
-        }
-    //}//else{console.log("exited")}
+
+        //}
+
 
     </script>
 
