@@ -19,18 +19,14 @@ When the player loses, increase the Losses counter and restart the game without 
 
     <h1>The Psychic Game</h1>
     <div>Guess what letter I'm thinking of</div>
-    <!-- (# of times the user has guessed the letter correctly) -->
     <div class="wins" style="background-color: yellowgreen">Wins:</div>
-    <!-- (# of times the user has failed to guess the letter correctly after exhausting all guesses) -->
     <div class="losses" style="background-color: yellow"> Losses:</div>
-    <!-- Guesses Left: (# of guesses left. This will update) -->
     <div class="guesses-left" style="background-color:royalblue">Guesses Left:</div>
-    <!-- Your Guesses So Far: -->
     <div class="guesses-so" style="background-color: peru">Guesses So Far:</div>
     <div class="errors" style="background-color:orangered;"></div>
 
     <script>
-        var guessCounter = 0;
+        var guessCounter = 8;
         var guessesLeft; // INITIALIZE ONCE CORRECT KEY IS PRESSED
         var wins = 0;
         var losses = 0;
@@ -55,30 +51,31 @@ When the player loses, increase the Losses counter and restart the game without 
             return yayOrNay;
         }
 
-        document.onkeyup = function (event) {
-
+        document.onkeyup = function (event) { 
             var userPick = event.key;
             if (checkAlpha(userPick)) {
-                console.log("checking userPick it is " + userPick);
-                if (checkGuess(computerPick, userPick)) {
-                    wins++;
-                    document.querySelector(".wins").innerHTML = "Wins: " + wins;
-                    //to the right spot on the page - print you win
-                } else {
-                    // print the other thing
-                    losses++;
-                    document.querySelector(".losses").innerHTML = "Losses: " + losses;
-                } }
-            else {
+                    while(guessCounter<9){
+                    document.querySelector(".guesses-so").insertAdjacentText("afterend", userPick);
+                    console.log("checking userPick it is " + userPick);
+                        if (checkGuess(computerPick, userPick)) {
+                            wins++;
+                            guessCounter=8;
+                            document.querySelector(".wins").innerHTML = "Wins: " + wins;
+                            } else {
+                                guessCounter--;
+                                if (guessCounter==0){
+                                    losses++;
+                                    document.querySelector(".losses").innerHTML = "Losses: " + losses;
+                                    guessCounter=8;
+                                    }
+                            } 
+                    }
+            }else {
                     document.querySelector(".errors").innerHTML = "enter valid lower case alpha char";
-                }
-            }
-
-        //}
-
+                }    
+        }
+    
 
     </script>
-
 </body>
-
 </html>
