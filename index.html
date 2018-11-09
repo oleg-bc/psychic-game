@@ -23,7 +23,7 @@ When the player loses, increase the Losses counter and restart the game without 
     <div class="losses" style="background-color: yellow"> Losses:</div>
     <div class="guesses-left" style="background-color:royalblue">Guesses Left:</div>
     <div class="guesses-so" style="background-color: peru">Guesses So Far:</div>
-    <div class="errors" style="background-color:orangered;"></div>
+    <div class="errors" style="background-color:orangered"></div>
 
     <script>
         var guessCounter = 8;
@@ -61,10 +61,15 @@ When the player loses, increase the Losses counter and restart the game without 
                             wins++;
                             guessCounter=8;
                             document.querySelector(".wins").innerHTML = "Wins: " + wins;
+                            computerPick = myAlfa[genRando()];
+                            console.log("computerPick is "+computerPick);
                             } else {
                                 guessCounter--;
+                                document.querySelector(".guesses-left").innerHTML = "Guesses left: " + guessCounter;
                                 if (guessCounter==0){
                                     losses++;
+                                    computerPick = myAlfa[genRando()];
+                                    console.log("computerPick is "+computerPick);
                                     document.querySelector(".losses").innerHTML = "Losses: " + losses;
                                     guessCounter=8;
                                     }
