@@ -54,7 +54,7 @@ When the player loses, increase the Losses counter and restart the game without 
         document.onkeyup = function (event) { 
             var userPick = event.key;
             if (checkAlpha(userPick)) {
-                    while(guessCounter<9){
+                    if (guessCounter<=8){
                     document.querySelector(".guesses-so").insertAdjacentText("afterend", userPick);
                     console.log("checking userPick it is " + userPick);
                         if (checkGuess(computerPick, userPick)) {
@@ -68,6 +68,7 @@ When the player loses, increase the Losses counter and restart the game without 
                                     document.querySelector(".losses").innerHTML = "Losses: " + losses;
                                     guessCounter=8;
                                     }
+                                    console.log("u just guessed wrong and guessCounter is "+ guessCounter);
                             } 
                     }
             }else {
